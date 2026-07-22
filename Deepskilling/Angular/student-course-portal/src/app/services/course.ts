@@ -1,0 +1,56 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class Course {
+
+  private courses = [
+
+    {
+      id: 1,
+      name: 'Angular',
+      code: 'ANG101',
+      credits: 3,
+      gradeStatus: 'passed'
+    },
+
+    {
+      id: 2,
+      name: 'Java',
+      code: 'JAVA201',
+      credits: 4,
+      gradeStatus: 'pending'
+    },
+
+    {
+      id: 3,
+      name: 'Python',
+      code: 'PY301',
+      credits: 2,
+      gradeStatus: 'failed'
+    },
+
+    {
+      id: 4,
+      name: 'Spring Boot',
+      code: 'SB401',
+      credits: 5,
+      gradeStatus: 'passed'
+    },
+
+    {
+      id: 5,
+      name: 'SQL',
+      code: 'SQL101',
+      credits: 3,
+      gradeStatus: 'pending'
+    }
+
+  ];
+
+  getCourses() {
+    return this.courses;
+  }
+
+}

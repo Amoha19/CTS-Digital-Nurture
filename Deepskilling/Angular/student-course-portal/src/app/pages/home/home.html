@@ -1,0 +1,37 @@
+<h1>{{ portalName }}</h1>
+
+<p>
+  This portal helps students view available courses,
+  enroll in courses and manage their profile.
+</p>
+
+<div class="box">
+  <p>Courses Available : 12</p>
+  <p>Enrolled Courses : 3</p>
+  <p>Current GPA : 3.8</p>
+</div>
+
+<hr>
+
+<h2>Hands-On 2: Data Binding</h2>
+
+<!-- Interpolation -->
+<p>Portal Name: {{ portalName }}</p>
+
+<!-- Property Binding -->
+<button [disabled]="!isPortalActive" (click)="onEnrollClick()">
+  Enroll Now
+</button>
+
+<p>{{ message }}</p>
+
+<hr>
+
+<!-- Two-Way Binding -->
+<input
+  type="text"
+  placeholder="Search Course"
+  [(ngModel)]="searchTerm"
+/>
+
+<p>Searching for: {{ searchTerm }}</p>

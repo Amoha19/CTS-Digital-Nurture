@@ -1,0 +1,106 @@
+<h2>Course Enrollment Form</h2>
+
+<form #enrollForm="ngForm" (ngSubmit)="onSubmit(enrollForm)">
+
+  <label>Student Name</label><br>
+  <input
+    type="text"
+    name="studentName"
+    [(ngModel)]="studentName"
+    required
+    #name="ngModel">
+
+  <div *ngIf="name.invalid && name.touched" style="color:red">
+    Student Name is required
+  </div>
+
+  <br><br>
+
+  <label>Email</label><br>
+  <input
+    type="email"
+    name="studentEmail"
+    [(ngModel)]="studentEmail"
+    required
+    email
+    #email="ngModel">
+
+  <div *ngIf="email.invalid && email.touched" style="color:red">
+    Enter a valid email
+  </div>
+
+  <br><br>
+
+  <label>Select Course</label><br>
+
+  <select
+    name="courseId"
+    [(ngModel)]="courseId"
+    required
+    #course="ngModel">
+
+    <option [ngValue]="null">--Select Course--</option>
+    <option [ngValue]="1">Angular</option>
+    <option [ngValue]="2">Java</option>
+    <option [ngValue]="3">Python</option>
+    <option [ngValue]="4">Spring Boot</option>
+    <option [ngValue]="5">SQL</option>
+
+  </select>
+
+  <div *ngIf="course.invalid && course.touched" style="color:red">
+    Select a course
+  </div>
+
+  <br><br>
+
+  <label>Semester</label><br>
+
+  <input
+    type="radio"
+    name="semester"
+    value="Odd"
+    [(ngModel)]="preferredSemester"> Odd
+
+  <input
+    type="radio"
+    name="semester"
+    value="Even"
+    [(ngModel)]="preferredSemester"> Even
+
+  <br><br>
+
+  <input
+    type="checkbox"
+    name="agree"
+    [(ngModel)]="agreeToTerms">
+
+  I agree to Terms & Conditions
+
+  <br><br>
+
+  <button
+    type="submit"
+    [disabled]="enrollForm.invalid">
+      Enroll
+  </button>
+  <br><br>
+
+<p
+  *ngIf="successMessage"
+  style="color:green;font-weight:bold;font-size:18px;">
+
+  {{ successMessage }}
+
+</p>
+</form>
+
+<hr>
+
+<h3>Preview</h3>
+
+<p>Name : {{ studentName }}</p>
+<p>Email : {{ studentEmail }}</p>
+<p>Course ID : {{ courseId }}</p>
+<p>Semester : {{ preferredSemester }}</p>
+<p>Accepted Terms : {{ agreeToTerms }}</p>

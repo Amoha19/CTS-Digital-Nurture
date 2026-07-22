@@ -1,0 +1,10 @@
+.box {
+    border: 1px solid gray;
+    padding: 15px;
+    width: 300px;
+    margin-top: 20px;
+}
+
+h1 {
+    color: #1976d2;
+}

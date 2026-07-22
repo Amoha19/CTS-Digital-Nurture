@@ -1,0 +1,19 @@
+input,
+select{
+    width:250px;
+    padding:6px;
+    margin-top:4px;
+}
+
+button{
+    padding:8px 20px;
+    cursor:pointer;
+}
+
+label{
+    font-weight:bold;
+}
+
+form{
+    margin-top:20px;
+}

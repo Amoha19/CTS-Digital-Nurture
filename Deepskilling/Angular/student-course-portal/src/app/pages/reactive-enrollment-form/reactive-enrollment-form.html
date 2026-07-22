@@ -1,0 +1,113 @@
+<h2>Reactive Course Enrollment Form</h2>
+
+<form [formGroup]="enrollForm" (ngSubmit)="onSubmit()">
+
+  <label>Student Name</label><br>
+  <input type="text" formControlName="studentName">
+
+  <div
+    *ngIf="enrollForm.get('studentName')?.invalid &&
+           enrollForm.get('studentName')?.touched"
+    style="color:red">
+
+    Student Name is required (Minimum 3 characters)
+
+  </div>
+
+  <br><br>
+
+  <label>Email</label><br>
+  <input type="email" formControlName="studentEmail">
+
+  <div
+    *ngIf="enrollForm.get('studentEmail')?.invalid &&
+           enrollForm.get('studentEmail')?.touched"
+    style="color:red">
+
+    Enter a valid Email
+
+  </div>
+
+  <br><br>
+
+  <label>Select Course</label><br>
+
+  <select formControlName="courseId">
+
+    <option value="">--Select Course--</option>
+    <option value="1">Angular</option>
+    <option value="2">Java</option>
+    <option value="3">Python</option>
+    <option value="4">Spring Boot</option>
+    <option value="5">SQL</option>
+
+  </select>
+
+  <div
+    *ngIf="enrollForm.get('courseId')?.invalid &&
+           enrollForm.get('courseId')?.touched"
+    style="color:red">
+
+    Please select a course
+
+  </div>
+
+  <br><br>
+
+  <label>Semester</label><br>
+
+  <input
+      type="radio"
+      value="Odd"
+      formControlName="preferredSemester">
+  Odd
+
+  <input
+      type="radio"
+      value="Even"
+      formControlName="preferredSemester">
+  Even
+
+  <br><br>
+
+  <input
+      type="checkbox"
+      formControlName="agreeToTerms">
+
+  I agree to Terms & Conditions
+
+  <div
+    *ngIf="enrollForm.get('agreeToTerms')?.invalid &&
+           enrollForm.get('agreeToTerms')?.touched"
+    style="color:red">
+
+    Please accept Terms & Conditions
+
+  </div>
+
+  <br><br>
+
+  <button
+      type="submit"
+      [disabled]="enrollForm.invalid">
+
+      Submit
+
+  </button>
+  <br><br>
+
+<p
+*ngIf="successMessage"
+style="color:green;font-weight:bold;font-size:18px">
+
+{{successMessage}}
+
+</p>
+
+</form>
+
+<hr>
+
+<h3>Live Form Value</h3>
+
+<pre>{{ enrollForm.value | json }}</pre>

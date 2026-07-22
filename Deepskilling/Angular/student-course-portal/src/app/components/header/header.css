@@ -1,0 +1,21 @@
+nav {
+    background-color: #1976d2;
+    color: white;
+    padding: 15px;
+}
+
+h2 {
+    display: inline;
+    margin-right: 20px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}

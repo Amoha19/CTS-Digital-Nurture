@@ -1,0 +1,34 @@
+<div class="card" appHighlight>
+
+    <h3>{{ course.name }}</h3>
+
+    <p><b>Code:</b> {{ course.code }}</p>
+
+    <p><b>Credits:</b> {{ course.credits }}</p>
+
+    <p>
+        Status :
+
+        <span
+            [ngClass]="{
+                'passed': course.gradeStatus === 'passed',
+                'pending': course.gradeStatus === 'pending',
+                'failed': course.gradeStatus === 'failed'
+            }"
+
+            [ngStyle]="{
+                'font-weight':'bold',
+                'font-size':'18px'
+            }">
+
+            {{ course.gradeStatus }}
+
+        </span>
+
+    </p>
+
+    <button (click)="enrollCourse()">
+        Enroll
+    </button>
+
+</div>

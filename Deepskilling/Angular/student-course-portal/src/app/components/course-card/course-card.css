@@ -1,0 +1,22 @@
+.card{
+    border:1px solid gray;
+    padding:15px;
+    margin:15px;
+    border-radius:8px;
+}
+
+.passed{
+    color:green;
+}
+
+.pending{
+    color:orange;
+}
+
+.failed{
+    color:red;
+}
+
+button{
+    margin-top:10px;
+}
