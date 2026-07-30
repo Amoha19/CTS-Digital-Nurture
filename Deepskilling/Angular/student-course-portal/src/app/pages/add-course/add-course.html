@@ -1,0 +1,67 @@
+<h2>Add Course</h2>
+
+<form (ngSubmit)="addCourse()">
+
+  <label>Course Name</label>
+  <br>
+
+  <input
+    type="text"
+    name="name"
+    [(ngModel)]="course.name"
+    required>
+
+  <br><br>
+
+  <label>Course Code</label>
+  <br>
+
+  <input
+    type="text"
+    name="code"
+    [(ngModel)]="course.code"
+    required>
+
+  <br><br>
+
+  <label>Credits</label>
+  <br>
+
+  <input
+    type="number"
+    name="credits"
+    [(ngModel)]="course.credits"
+    required>
+
+  <br><br>
+
+  <label>Status</label>
+  <br>
+
+  <select
+    name="gradeStatus"
+    [(ngModel)]="course.gradeStatus">
+
+    <option value="passed">Passed</option>
+    <option value="pending">Pending</option>
+    <option value="failed">Failed</option>
+
+  </select>
+
+  <br><br>
+
+  <button type="submit">
+    Add Course
+  </button>
+
+</form>
+
+<br>
+
+<p
+  *ngIf="successMessage"
+  style="color:green;font-weight:bold;">
+
+  {{ successMessage }}
+
+</p>

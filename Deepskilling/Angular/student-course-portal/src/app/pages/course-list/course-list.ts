@@ -3,7 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { CourseCard } from '../../components/course-card/course-card';
 import { Course } from '../../services/course';
+import { Store } from '@ngrx/store';
 
+import * as CourseActions from '../../store/actions/course.actions';
+
+import * as CourseSelectors from '../../store/selectors/course.selectors';
 @Component({
   selector: 'app-course-list',
   standalone: true,
@@ -16,38 +20,141 @@ import { Course } from '../../services/course';
 })
 export class CourseList implements OnInit {
 
-  isLoading = true;
+  isLoading: boolean = true;
 
   courses: any[] = [];
 
   selectedCourseId: number | null = null;
+  constructor(
+  private courseService: Course,
+  private store: Store
+) {}
 
-  // Dependency Injection
-  constructor(private courseService: Course) {}
+  ngOnInit(): void {
 
- ngOnInit(): void {
+  console.log("Component Loaded");
 
-  this.isLoading = true;
+  this.store.dispatch(CourseActions.loadCourses());
 
-  setTimeout(() => {
+  this.store.select(CourseSelectors.selectAllCourses)
+    .subscribe(courses => {
 
-    this.courses = this.courseService.getCourses();
+      this.courses = courses;
 
-    this.isLoading = false;
+      console.log("Courses from Store:", courses);
 
-    console.log(this.courses);
+    });
 
-  }, 1500);
+  this.store.select(CourseSelectors.selectLoading)
+    .subscribe(loading => {
+
+      this.isLoading = loading;
+
+    });
 
 }
 
-  onEnroll(courseId: number) {
-    console.log("Parent received:", courseId);
-    this.selectedCourseId = courseId;
+  // Load all courses
+  loadCourses(): void {
+
+    console.log("Component Loaded");
+
+    this.isLoading = true;
+
+    this.courseService.getCoursesUsingSwitchMap().subscribe({
+
+      next: (data) => {
+
+        console.log("API Success");
+        console.log(data);
+
+        this.courses = data;
+
+        this.isLoading = false;
+
+      },
+
+      error: (err) => {
+
+        console.error("API Error :", err);
+
+        this.isLoading = false;
+
+      }
+
+    });
+
   }
 
-  trackByCourseId(index: number, course: any) {
+  // ---------------- Hands-On 7 ----------------
+
+  onEnroll(courseId: number): void {
+
+    console.log("Parent received :", courseId);
+
+    this.selectedCourseId = courseId;
+
+  }
+
+  // ---------------- Hands-On 8 ----------------
+
+  onEdit(course: any): void {
+
+    const updatedCourse = {
+      ...course,
+      gradeStatus: 'passed'
+    };
+
+    this.courseService.updateCourse(course.id, updatedCourse).subscribe({
+
+      next: () => {
+
+        alert("Course Updated Successfully");
+
+        this.loadCourses();
+
+      },
+
+      error: (err) => {
+
+        console.error(err);
+
+      }
+
+    });
+
+  }
+
+  onDelete(courseId: number): void {
+
+    if (confirm("Are you sure you want to delete this course?")) {
+
+      this.courseService.deleteCourse(courseId).subscribe({
+
+        next: () => {
+
+          alert("Course Deleted Successfully");
+
+          this.loadCourses();
+
+        },
+
+        error: (err) => {
+
+          console.error(err);
+
+        }
+
+      });
+
+    }
+
+  }
+
+  trackByCourseId(index: number, course: any): number {
+
     return course.id;
+
   }
 
 }

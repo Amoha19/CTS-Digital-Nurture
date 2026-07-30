@@ -2,9 +2,13 @@
 
     <h3>{{ course.name }}</h3>
 
-    <p><b>Code:</b> {{ course.code }}</p>
+    <p>
+        <b>Code:</b> {{ course.code }}
+    </p>
 
-    <p><b>Credits:</b> {{ course.credits }}</p>
+    <p>
+        <b>Credits:</b> {{ course.credits }}
+    </p>
 
     <p>
         Status :
@@ -17,8 +21,8 @@
             }"
 
             [ngStyle]="{
-                'font-weight':'bold',
-                'font-size':'18px'
+                'font-weight': 'bold',
+                'font-size': '18px'
             }">
 
             {{ course.gradeStatus }}
@@ -27,8 +31,23 @@
 
     </p>
 
+    <!-- Hands-On 7 -->
     <button (click)="enrollCourse()">
         Enroll
+    </button>
+
+    &nbsp;
+
+    <!-- Hands-On 8 -->
+    <button (click)="editCourse()">
+        Edit
+    </button>
+
+    &nbsp;
+
+    <!-- Hands-On 8 -->
+    <button (click)="deleteCourse()">
+        Delete
     </button>
 
 </div>
